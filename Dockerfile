@@ -18,4 +18,4 @@ RUN set x=1 && \
     apk del -f .build-deps freetype-dev libpng-dev libjpeg-turbo-dev && \
     rm -rf /tmp/* /var/cache/apk/*
 
-ADD ./conf.d/uploads.ini /usr/local/etc/php/uploads.ini
+ADD ./conf.d/uploads.ini /usr/local/etc/php/conf.d/uploads.ini

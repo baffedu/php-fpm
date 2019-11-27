@@ -16,7 +16,7 @@ RUN set x=1 && \
 
 ENV TZ=Asia/Shanghai
 
-RUN apk add tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &&\
+RUN apk add -U tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &&\
     echo "Asia/Shanghai" > /etc/timezone && \
     apk del tzdata
 

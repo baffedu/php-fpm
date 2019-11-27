@@ -14,13 +14,13 @@ RUN set x=1 && \
     apk del -f .build-deps freetype-dev libpng-dev libjpeg-turbo-dev && \
     rm -rf /tmp/* /var/cache/apk/*
 
-RUN echo "Asia/Chongqing" > /etc/timezone && \
-    dpkg-reconfigure -f noninteractive tzdata && \
-    echo "zh_CN.UTF-8 UTF-8" > /etc/locale.gen && \
-    echo 'LANG="zh_CN.UTF-8"'>/etc/default/locale && \
-    dpkg-reconfigure --frontend=noninteractive locales && \
-    update-locale LANG=zh_CN.UTF-8
+ENV TZ=Asia/Shanghai
+
+RUN echo "http://mirrors.aliyun.com/alpine/v3.4/main/" > /etc/apk/repositories &&\
+    apk --no-cache add tzdata zeromq && \
+    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
+    echo '$TZ' > /etc/timezone
+
 
 ADD ./conf.d/zz.conf /usr/local/etc/php-fpm.d/zz.conf
-
 ADD ./conf.d/uploads.ini /usr/local/etc/php/conf.d/uploads.ini

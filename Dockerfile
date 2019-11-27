@@ -16,10 +16,9 @@ RUN set x=1 && \
 
 ENV TZ=Asia/Shanghai
 
-RUN echo "http://mirrors.aliyun.com/alpine/v3.4/main/" > /etc/apk/repositories &&\
-    apk --no-cache add tzdata zeromq && \
-    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
-    echo '$TZ' > /etc/timezone
+RUN apk add tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &&\
+    echo "Asia/Shanghai" > /etc/timezone && \
+    apk del tzdata
 
 
 ADD ./conf.d/zz.conf /usr/local/etc/php-fpm.d/zz.conf

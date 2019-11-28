@@ -14,11 +14,11 @@ RUN set x=1 && \
     apk del -f .build-deps freetype-dev libpng-dev libjpeg-turbo-dev && \
     rm -rf /tmp/* /var/cache/apk/*
 
-ENV TZ=Asia/Shanghai
+ENV TZ=Asia/Chongqing
 
 RUN apk add -U tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &&\
-    echo "Asia/Shanghai" > /etc/timezone && \
-    apk del tzdata
+    echo "Asia/Chongqing" > /etc/timezone
+#    apk del tzdata
 
 
 ADD ./conf.d/zz.conf /usr/local/etc/php-fpm.d/zz.conf

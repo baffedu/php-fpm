@@ -6,6 +6,7 @@ RUN set x=1 && \
     apk add --no-cache --virtual .build-deps $PHPIZE_DEPS zlib-dev imagemagick-dev libtool && \
     apk add --no-cache --virtual .imagick-runtime-deps imagemagick && \
     apk add --no-cache --virtual .gd freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev && \
+    apk add git && \
     docker-php-ext-configure gd --with-gd --with-freetype-dir=/usr/include/ --with-png-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
     pecl install imagick && \
     docker-php-ext-install -j$(nproc) gd pcntl pdo_mysql bcmath zip opcache && \
@@ -21,8 +22,6 @@ RUN mkdir -p /usr/src/php/ext/redis && \
     echo 'redis' >> /usr/src/php-available-exts && \
     docker-php-ext-install redis && \
     docker-php-source delete
-
-RUN akp install git
 
 
 RUN apk add -U tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &&\

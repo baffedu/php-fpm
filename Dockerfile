@@ -22,6 +22,8 @@ RUN mkdir -p /usr/src/php/ext/redis && \
     docker-php-ext-install redis && \
     docker-php-source delete
 
+RUN akp install git
+
 
 RUN apk add -U tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &&\
     echo "Asia/Chongqing" > /etc/timezone

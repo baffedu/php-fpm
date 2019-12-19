@@ -31,3 +31,5 @@ RUN apk add -U tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &&\
 ADD ./conf.d/zz.conf /usr/local/etc/php-fpm.d/zz.conf
 
 ADD ./conf.d/uploads.ini /usr/local/etc/php/conf.d/uploads.ini
+
+CMD ["php-fpm","-R"]
